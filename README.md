@@ -1,5 +1,5 @@
-# Your Project's Title...
-Your project's description...
+# Sazerac 99brandparty Franklin Website
+Franklin site implementing: https://99brandparty.com
 
 ## Environments
 - Preview: https://main--sazerac-99brandparty--hlxsites.hlx.page/
