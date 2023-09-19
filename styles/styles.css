@@ -21,9 +21,10 @@
   --footer-text-color: #7A7A7A;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --body-font-family: opensansregular, 'OpenSansRegular Fallback', sans-serif;
+  --heading-font-family: oswald, 'Oswald Fallback', sans-serif;
+  --heading-font-family-product: 'Covered By Your Grace', 'Covered By Your Grace Fallback', sans-serif;
+  --fixed-font-family: menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -44,12 +45,59 @@
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 100.06%;
-  ascent-override: 95%;
+  font-family: 'OpenSansRegular Fallback';
+  font-style: normal;
+  font-weight: normal;
   src: local('Arial');
+  ascent-override: 99.49%;
+  descent-override: 27.58%;
+  line-gap-override: 0.00%;
+  size-adjust: 105.33%;
 }
 
+@font-face {
+  font-family: 'Oswald Fallback';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Arial');
+  ascent-override: 137.74%;
+  descent-override: 38.19%;
+  line-gap-override: 0.00%;
+  size-adjust: 85.93%;
+}
+
+@font-face {
+  font-family: 'Oswald Fallback';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Arial');
+  ascent-override: 141.65%;
+  descent-override: 35.44%;
+  line-gap-override: 0.00%;
+  size-adjust: 77.42%;
+}
+
+@font-face {
+  font-family: 'Oswald Fallback';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Arial Bold');
+  ascent-override: 146.46%;
+  descent-override: 41.90%;
+  line-gap-override: 0.00%;
+  size-adjust: 79.94%;
+}
+
+@font-face {
+  font-family: 'Covered By Your Grace Fallback';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Arial');
+  ascent-override: 118.71%;
+  descent-override: 46.92%;
+  line-gap-override: 0.00%;
+  size-adjust: 83.99%;
+}
 
 @media (min-width: 900px) {
   :root {
