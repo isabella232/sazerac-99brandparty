@@ -19,6 +19,15 @@ export default async function decorate(block) {
     const footer = document.createElement('div');
     footer.innerHTML = html;
 
+    const secondList = document.createElement('ul');
+    footer.querySelectorAll('ul li').forEach((link, index) => {
+      if (index > 3) {
+        secondList.append(link);
+      }
+    });
+    if (secondList.children.length > 0) {
+      footer.querySelector('ul').after(secondList);
+    }
     decorateIcons(footer);
     block.append(footer);
   }
