@@ -196,6 +196,7 @@ export async function decorateIcons(element) {
                 // rescope ids and references to avoid clashes across icons;
                 .replaceAll(/ id="([^"]+)"/g, (_, id) => ` id="${iconName}-${id}"`)
                 .replaceAll(/="url\(#([^)]+)\)"/g, (_, id) => `="url(#${iconName}-${id})"`)
+                .replaceAll(/="fill:url\(#([^)]+)\)/g, (_, id) => `="fill:url(#${iconName}-${id})`)
                 .replaceAll(/ xlink:href="#([^"]+)"/g, (_, id) => ` xlink:href="#${iconName}-${id}"`),
             };
           } else {

@@ -15,6 +15,7 @@
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: #000;
+  --header-background-color: #FEF103;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #FFF;
@@ -43,8 +44,13 @@
   --footer-body-font-family: var(--heading-font-family);
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 120px;
+}
 
+@media (min-width: 1000px) {
+  :root {
+    --nav-height: 109px;
+  }
 }
 
 @font-face {
@@ -121,6 +127,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 body.appear {
