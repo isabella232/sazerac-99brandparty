@@ -191,4 +191,14 @@ export async function fetchQueryIndex() {
   return fetchIndex('query-index');
 }
 
+/**
+ * retrieves the index, filters for products and sorts alphabetically
+ * @returns {Promise<*>} the sorted indexed products
+ */
+export async function getSortedProductsIndex() {
+  const index = await fetchQueryIndex();
+  const indexedProducts = index.data.filter((e) => e.path.includes('/products/'));
+  return indexedProducts.sort((a, b) => a.title.localeCompare(b.title));
+}
+
 loadPage();

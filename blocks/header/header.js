@@ -1,5 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
-import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { getSortedProductsIndex } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1000px)');
@@ -88,8 +88,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 
 async function addProductsFromIndex(navSection) {
   if (navSection.firstElementChild.pathname === '/products') {
-    const index = await fetchQueryIndex();
-    const indexedProducts = index.data.filter((e) => e.path.includes('/products/'));
+    const indexedProducts = await getSortedProductsIndex();
     const insertLocation = navSection.querySelector('li>ul>li>ul');
     indexedProducts.forEach((e) => {
       const entry = document.createElement('li');

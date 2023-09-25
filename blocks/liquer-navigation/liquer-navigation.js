@@ -1,4 +1,4 @@
-import { fetchQueryIndex } from '../../scripts/scripts.js';
+import { getSortedProductsIndex } from '../../scripts/scripts.js';
 
 function createDevider(block, prepend) {
   const deviderDiv = document.createElement('div');
@@ -14,8 +14,7 @@ export default async function decorate(block) {
   createDevider(block, true);
   createDevider(block, false);
 
-  const index = await fetchQueryIndex();
-  const indexedProducts = index.data.filter((e) => e.path.includes('/products/'));
+  const indexedProducts = await getSortedProductsIndex();
   const indexCurrentPage = indexedProducts.findIndex((e) => e.path === document.location.pathname);
 
   const prevButtonDiv = document.createElement('div');
