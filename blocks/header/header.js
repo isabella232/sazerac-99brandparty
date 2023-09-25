@@ -1,4 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { fetchQueryIndex } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1000px)');
@@ -85,6 +86,19 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+async function addProductsFromIndex(navSection) {
+  if (navSection.firstElementChild.pathname === '/products') {
+    const index = await fetchQueryIndex();
+    const indexedProducts = index.data.filter((e) => e.path.includes('/products/'));
+    const insertLocation = navSection.querySelector('li>ul>li>ul');
+    indexedProducts.forEach((e) => {
+      const entry = document.createElement('li');
+      entry.innerHTML = `<a href="${e.path}">${e.title}</a>`;
+      insertLocation.append(entry);
+    });
+  }
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -118,6 +132,7 @@ export default async function decorate(block) {
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+        addProductsFromIndex(navSection);
         navSection.addEventListener('click', (event) => {
           if (event.target === navSection) {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';
