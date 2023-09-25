@@ -12,6 +12,9 @@ import {
   loadBlocks,
   loadCSS,
 } from './lib-franklin.js';
+import {
+  loadProduct,
+} from './products.js';
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 
@@ -85,6 +88,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  await loadProduct(doc);
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

@@ -316,3 +316,7 @@ body.hardseltzer main {
     background-size: auto;
   }
 }
+
+.product-background {
+  background-repeat: no-repeat;
+}
