@@ -2,15 +2,15 @@
     width: 110px;
     border-top: 1px solid var(--header-background-color);
     display: flex;
-    flex-grow: 1;
 }
 
 .liquer-navigation h3 {
     flex-grow: 4;
     margin: 0;
+    text-transform: uppercase;
 }
 
-.liquer-navigation p, .liquer-navigation a.button.primary {
+.liquer-navigation p, .liquer-navigation a.button {
     margin: 0;
     min-width: 160px;
 }

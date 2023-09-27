@@ -1,5 +1,6 @@
 import {
   getMetadata,
+  buildBlock,
 } from './lib-franklin.js';
 
 function querySelectorIncludesText(element, selector, text) {
@@ -70,24 +71,57 @@ export async function loadProduct(doc) {
 
       applyBackgroundImage(liquerSection, liquerSection);
 
+      // move the liquer section content into a columns block
+      let leftCol = liquerSection.querySelector('p:first-of-type');
+      leftCol.remove();
+      let rightCol = liquerSection.innerHTML;
+      liquerSection.innerHTML = '';
+      const columnsTable = buildBlock('columns', [[leftCol, rightCol]]);
+      liquerSection.append(columnsTable);
+      liquerSection.classList.add('liquer-section');
+
       // process the recipes information
       const recipesSection = main.lastElementChild;
+      recipesSection.classList.add('recipes-section');
 
       // create dom out of the array for easier query
       const recipesDataDom = document.createElement('div');
       recipesDataDom.append(...recipesData);
 
       // put the 'made with' information into the right column
-      const rightCol = recipesSection.querySelector('.columns>div>div:last-of-type');
+      rightCol = recipesSection.querySelector('.columns>div>div:last-of-type');
       rightCol.prepend(recipesDataDom.querySelector('p:last-of-type'));
       rightCol.append(recipesDataDom.querySelector('h3:last-of-type'));
 
       // put everything that is left over into the left column, such as recipes and images
-      const leftCol = recipesSection.querySelector('.columns>div>div:first-of-type');
+      leftCol = recipesSection.querySelector('.columns>div>div:first-of-type');
       leftCol.innerHTML = '';
       Array.from(recipesDataDom.children).forEach((e) => leftCol.appendChild(e));
 
       applyBackgroundImage(leftCol, recipesSection);
+
+      const leftColImageDiv = document.createElement('div');
+      const image = leftCol.querySelector('p');
+      const imageText = image.nextElementSibling;
+      leftColImageDiv.append(image);
+      leftColImageDiv.append(imageText);
+      leftColImageDiv.classList.add('recipe-left-image');
+
+      const leftColContentDiv = document.createElement('div');
+      leftColContentDiv.append(...leftCol.childNodes);
+      leftColContentDiv.classList.add('recipes-content');
+      leftCol.append(leftColContentDiv);
+      leftCol.prepend(leftColImageDiv);
+
+      const rightColImageDiv = document.createElement('div');
+      rightColImageDiv.append(rightCol.querySelector('p'));
+      rightColImageDiv.classList.add('recipes-made-with-image');
+
+      const rightColContentDiv = document.createElement('div');
+      rightColContentDiv.append(...rightCol.childNodes);
+      rightColContentDiv.classList.add('recipes-made-with-content');
+      rightCol.append(rightColContentDiv);
+      rightCol.prepend(rightColImageDiv);
     }
   }
 }

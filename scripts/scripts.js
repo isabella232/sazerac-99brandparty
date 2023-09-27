@@ -35,6 +35,12 @@ function buildHeroBlock(main) {
       isHero = !picture.previousElementSibling && !picture.nextElementSibling;
     }
   }
+
+  if (main.querySelector('.columns picture') === picture) {
+    // do not wrap to a hero block in case the first image is part of a columns block
+    isHero = false;
+  }
+
   if (isHero) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
