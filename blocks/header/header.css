@@ -199,7 +199,6 @@ header nav .nav-sections {
   flex: 1 1 auto;
   display: none;
   visibility: hidden;
-  background-color: var(--overlay-color);
 }
 
 header nav[aria-expanded="true"] .nav-sections {
@@ -207,7 +206,6 @@ header nav[aria-expanded="true"] .nav-sections {
   visibility: visible;
   align-self: start;
   width: 100%;
-  background: #222;
 }
 
 .nav-tools > ul {
@@ -229,6 +227,10 @@ header nav .nav-tools > ul > li,
 header nav .nav-tools > ul > li .icon {
   width: 28px;
   height: 28px;
+}
+
+.nav-drop a:hover {
+  text-decoration: none;
 }
 
 header nav .nav-sections ul > li {
@@ -340,13 +342,13 @@ header nav .nav-sections > ul > li:last-child {
   header nav .nav-sections > ul > li > ul > li > ul {
     display: flex;
     row-gap: 1px;
-    max-height: 340px;
+    max-height: 350px;
     flex-flow: column wrap;
     font-size: 12px;
     font-weight: 400;
     font-family: var(--body-font-family);
   }
-  
+
   header nav .nav-sections .nav-drop > ul {
     cursor: default;
   }
