@@ -20,6 +20,7 @@
   --highlight-background-color: #ccc;
   --text-color: #FFF;
   --footer-text-color: #7A7A7A;
+  --heading-white: #F4F4F4;
 
   /* fonts */
   --body-font-family: opensansregular, 'OpenSansRegular Fallback', sans-serif;
@@ -28,10 +29,7 @@
   --fixed-font-family: menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
-  --button-font-size: 16px;
+  --body-font-size: 14px;
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
@@ -43,6 +41,13 @@
   --footer-font-size: 14px;
   --footer-link-font-family: var(--body-font-family);
   --footer-body-font-family: var(--heading-font-family);
+
+   /* font weights */
+  --font-weight-xs: 300;
+  --font-weight-s: 400;
+  --font-weight-m: 500;
+  --font-weight-l: 600;
+  --font-weight-xl: 900;
 
   /* nav height */
   --nav-height: 120px;
@@ -79,7 +84,7 @@
 @font-face {
   font-family: 'Oswald Fallback';
   font-style: normal;
-  font-weight: 300;
+  font-weight: var(--font-weight-xs);
   src: local('Arial');
   ascent-override: 141.65%;
   descent-override: 35.44%;
@@ -110,7 +115,7 @@
 }
 
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size);
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.6;
@@ -131,7 +136,7 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: var(--font-weight-l);
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
@@ -160,7 +165,7 @@ hr {
 
 code, pre, samp {
   font-family: var(--fixed-font-family);
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size);
 }
 
 code, samp {
@@ -191,24 +196,24 @@ a:hover {
 
 /* buttons */
 a.button:any-link, button {
-  font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
   text-align: center;
   font-style: normal;
-  font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
   background-color: var(--header-background-color);
-  margin: 10px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 3px;
   text-transform: uppercase;
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size);
+  font-weight: bold;
+  margin: 0;
+  padding: 9px 13px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -226,7 +231,9 @@ a.button.secondary, button.secondary {
   border-style: solid;
   border-width: 2px;
   border-color: var(--header-background-color);
-  color: var(--text-color)
+  color: var(--text-color);
+  text-transform: none;
+  padding: 8px 24px;
 }
 
 main input {
@@ -348,10 +355,10 @@ body.hardseltzer main {
 
 .recipe-left-image p {
   text-align: center;
-  color: #F4F4F4;
-  font-family: "Covered By Your Grace", sans-serif;
+  color: var(--heading-white);
+  font-family: var(--heading-font-family-product);
   font-size: 24px;
-  font-weight: 600;
+  font-weight: var(--font-weight-l);
   margin: 0;
 }
 
@@ -370,17 +377,17 @@ body.hardseltzer main {
 }
 
 .recipes-content h3 {
-  font-family: "Covered By Your Grace", sans-serif;
-  font-weight: 500;
+  font-family: var(--heading-font-family-product);
+  font-weight: var(--font-weight-m);
   font-size: 36px;
   padding-top: 30px;
 }
 
 .recipes-made-with-content{
-  color: #F4F4F4;
-  font-family: Oswald, sans-serif;
-  font-size: 14px;
-  font-weight: 300;
+  color: var(--heading-white);
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--font-weight-xs);
   text-transform: uppercase;
   padding-top: 35px;
 }
@@ -393,3 +400,28 @@ body.hardseltzer main {
   text-align: center;
   text-transform: uppercase;
 }
+
+.section p {
+  color: #E0E0E0;
+  font-size: var(--body-font-size);
+  font-weight: var(--font-weight-l);
+  margin: 0 0 10px;
+}
+
+.white-yellow-titl p:first-of-type {
+  margin:0 0 10px;
+  color: var(--heading-white);
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: var(--font-weight-s);
+  line-height: 15px;
+}
+
+.white-yellow-titl p:nth-of-type(2) {
+  margin:0 0 10px;
+  color: var(--header-background-color);
+  font-family: var(--heading-font-family);
+  font-size: 30px;
+  font-weight: var(--font-weight-xl);
+}
+
