@@ -51,6 +51,7 @@
 
   /* nav height */
   --nav-height: 120px;
+  --footer-height: 272px;
 }
 
 @media (min-width: 1000px) {
@@ -424,4 +425,3 @@ body.hardseltzer main {
   font-size: 30px;
   font-weight: var(--font-weight-xl);
 }
-
