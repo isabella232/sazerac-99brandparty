@@ -1,0 +1,12 @@
+{
+  "name": "99 Brand Party",
+  "short_name": "99 Brand Party",
+  "icons": [
+      {
+          "src": "/styles/icons/favicon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      }
+  ],
+  "display": "standalone"
+}
