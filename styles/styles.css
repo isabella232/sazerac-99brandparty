@@ -52,7 +52,6 @@
 
   /* nav height */
   --nav-height: 120px;
-  --footer-height: 272px;
 }
 
 @media (min-width: 1000px) {
@@ -382,6 +381,57 @@ body.hardseltzer main {
   margin: 0;
 }
 
+.recipes-made-with-content h3, .recipes-made-with-image p{
+  margin: 0;
+}
+
+.center-section {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section p {
+  color: #E0E0E0;
+  font-size: var(--body-font-size);
+  font-weight: var(--font-weight-l);
+  margin: 0 0 10px;
+}
+
+.recipes-theme>main p:first-of-type {
+  margin:0 0 10px;
+  color: var(--heading-white);
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: var(--font-weight-s);
+  line-height: 15px;
+}
+
+.recipes-theme>main p:nth-of-type(2) {
+  margin:0 0 10px;
+  color: var(--header-background-color);
+  font-family: var(--heading-font-family);
+  font-size: 30px;
+  font-weight: var(--font-weight-xl);
+}
+
+.recipes-theme .columns {
+  background-image: url('https://main--sazerac-99brandparty--hlxsites.hlx.live/media/slider-bg-recipes-mobile-576x1024-1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.recipes-theme .columns>div {
+  background-image: url('https://main--sazerac-99brandparty--hlxsites.hlx.live/media/recipes-background-landing-right.png');
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 1024px) {
+  .recipes-theme .columns, .recipes-theme .columns>div  {
+    background-attachment: fixed;
+  }
+}
+
 .recipes-section .columns>div {
   align-items: flex-start;
 }
@@ -410,37 +460,4 @@ body.hardseltzer main {
   font-weight: var(--font-weight-xs);
   text-transform: uppercase;
   padding-top: 35px;
-}
-
-.recipes-made-with-content h3, .recipes-made-with-image p{
-  margin: 0;
-}
-
-.center-section {
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.section p {
-  color: #E0E0E0;
-  font-size: var(--body-font-size);
-  font-weight: var(--font-weight-l);
-  margin: 0 0 10px;
-}
-
-.white-yellow-titl p:first-of-type {
-  margin:0 0 10px;
-  color: var(--heading-white);
-  font-family: var(--heading-font-family);
-  font-size: 28px;
-  font-weight: var(--font-weight-s);
-  line-height: 15px;
-}
-
-.white-yellow-titl p:nth-of-type(2) {
-  margin:0 0 10px;
-  color: var(--header-background-color);
-  font-family: var(--heading-font-family);
-  font-size: 30px;
-  font-weight: var(--font-weight-xl);
 }
