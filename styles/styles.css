@@ -47,6 +47,7 @@
   --font-weight-s: 400;
   --font-weight-m: 500;
   --font-weight-l: 600;
+  --font-weight-lplus: 700;
   --font-weight-xl: 900;
 
   /* nav height */
@@ -139,15 +140,15 @@ h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: var(--font-weight-l);
   line-height: 1.25;
-  margin-top: 1em;
-  margin-bottom: .5em;
+  margin-top: 28px;
+  margin-bottom: 10px;
   scroll-margin: calc(var(--nav-height) + 1em);
   color: var(--header-background-color);
 }
 
 h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
+h3 { font-size: var(--heading-font-size-m); font-weight: var(--font-weight-lplus) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
@@ -300,6 +301,24 @@ main .section.highlight {
 }
 
 /* Themes */
+
+.faq-theme main {
+  background-image: url('https://main--sazerac-99brandparty--hlxsites.hlx.live/media/recipes-background-landing-left.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@media (min-width: 1025px) {
+  .faq-theme main {
+    background-attachment: fixed;
+  }
+}
+
+.faq-theme .section {
+  margin: 0 31% 0 24%;
+}
+
+
 body.hardseltzer main {
   background: linear-gradient(
     rgba(0 0 0 / 70%),
