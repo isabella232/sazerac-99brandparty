@@ -24,6 +24,7 @@ const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
+  if (main.querySelector('.heroslides')) return;
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise, max-len

@@ -1,0 +1,132 @@
+main .heroslides {
+  position: relative;
+}
+
+main .heroslides > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main .heroslides > .hidden {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: fade-in 10s; 
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+main .heroslides > div:first-of-type {
+  animation: fade-out 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  line-height: 1.2;
+}
+
+main .heroslides > div > div:first-of-type {
+  width: 80%;
+}
+
+main .heroslides .shop {
+  background-image: url('/media/shop-drisly-now.png');
+  width: 184px;
+  height: 65px;
+  font-size: 0;
+  color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+
+main .heroslides .links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main .heroslides .links > p {
+  display: flex;
+}
+
+main .heroslides .button-container > a {
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  font-size: 14px;
+  text-decoration: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0;
+}
+
+main .heroslides .wrapper img {
+  max-height: 145px;  
+}
+
+main .heroslides .wrapper p {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+main .heroslides .wrapper p:first-of-type,
+main .heroslides > div:first-of-type .wrapper p {
+  font-size: 43px;
+  font-weight: 500;
+  font-family: var(--heading-font-family);
+  margin: 0;
+}
+
+main .heroslides .wrapper p > strong {
+  font-size: 43px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+}
+
+
+@media (min-width: 1000px) {
+  main .heroslides > div > div:first-of-type {
+    width: 50%;
+  }
+
+  main .heroslides .wrapper {
+    width: 340px;
+    margin: auto;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {opacity: 1;};
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
+  
+  100% { opacity: 0;}
+}
