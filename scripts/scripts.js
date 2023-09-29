@@ -8,6 +8,7 @@ import {
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
+  getMetadata,
   waitForLCP,
   loadBlocks,
   loadCSS,
@@ -74,11 +75,22 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Load theme css
+ */
+function loadTheme() {
+  const theme = getMetadata('theme');
+  if (theme) {
+    loadCSS(`${window.hlx.codeBasePath}/styles/theme-${theme}.css`);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  loadTheme();
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);

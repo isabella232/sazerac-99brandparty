@@ -1,0 +1,17 @@
+main .form input,
+main .form textarea{
+    width: 100%;
+    max-width: 50rem;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    border: 1px solid #fef102;
+    outline: none;
+    background-color: white;
+    color: rgb(122 122 122);
+}
+
+main .form textarea {
+    height: 212px;
+}
