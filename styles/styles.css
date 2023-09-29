@@ -310,7 +310,7 @@ main .section.highlight {
 /* Themes */
 
 .faq-theme main {
-  background-image: url('https://main--sazerac-99brandparty--hlxsites.hlx.live/media/recipes-background-landing-left.png');
+  background-image: url('/media/recipes-background-landing-left.png?width=2000&format=webply&optimize=medium');
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -330,14 +330,14 @@ body.hardseltzer main {
   background: linear-gradient(
     rgba(0 0 0 / 70%),
     rgba(0 0 0 / 70%)
-  ), url('/media/slider-recipes.png');
+  ), url('/media/slider-recipes.png?width=2000&format=webply&optimize=medium');
   background-repeat: no-repeat;
   background-size: auto;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1000px) {
   body.hardseltzer main {
-    background: url('/media/slider-recipes.png');
+    background: url('/media/slider-recipes.png?width=2000&format=webply&optimize=medium');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: auto;
@@ -423,13 +423,13 @@ body.hardseltzer main {
 }
 
 .recipes-theme .columns {
-  background-image: url('https://main--sazerac-99brandparty--hlxsites.hlx.live/media/slider-bg-recipes-mobile-576x1024-1.png');
+  background-image: url('/media/slider-bg-recipes-mobile-576x1024-1.png?width=2000&format=webply&optimize=medium');
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .recipes-theme .columns>div {
-  background-image: url('https://main--sazerac-99brandparty--hlxsites.hlx.live/media/recipes-background-landing-right.png');
+  background-image: url('/media/recipes-background-landing-right.png?width=2000&format=webply&optimize=medium');
   background-position: top right;
   background-repeat: no-repeat;
 }

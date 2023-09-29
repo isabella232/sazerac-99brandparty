@@ -2,8 +2,8 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
   max-width: 860px;
+  align-items: center;
 }
 
 .liquer-container .liquer-item {
@@ -12,28 +12,26 @@
   display: flex;
   margin-top: 10px;
   padding-bottom: 10px;
+  flex-direction: column;
+  align-items: center;
 }
 
-.liquer-container .liquer-item .liquer-info {
+.liquer-container .liquer-item .liquer-part-1 {
   display: flex;
   flex-direction: column;
-}
-
-.liquer-container .liquer-item a {
-  margin: 0 auto;
-  font-size: var(--button-font-size);
-  font-weight: bold;
-  font-family: var(--heading-font-family);
-  fill: var(--background-color);
-  color: var(--background-color);
-  background-color: var(--header-background-color);
-  padding: 13px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  line-height: 1;
 }
 
 .liquer-container .liquer-item img {
   width: 180px;
   height: 300px;
+}
+
+@media (min-width: 1000px) {
+  .liquer-container .liquer-item {
+    flex-direction: row;
+  }
+  
+  .liquer-container .liquer-item.right {
+    flex-direction: row-reverse;
+  }
 }
