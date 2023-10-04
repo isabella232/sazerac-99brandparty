@@ -125,6 +125,23 @@ async function loadEager(doc) {
   }
 }
 
+const POSTFIX = '99 Brand Party';
+
+function setTitle(doc) {
+  const title = doc.querySelector('head title');
+  if (title) {
+    if (!title.textContent.includes(POSTFIX)) {
+      title.textContent = `${title.textContent} – ${POSTFIX}`;
+    }
+  }
+  const metaTitle = doc.querySelector('head meta[property="og:title"]');
+  if (metaTitle) {
+    if (!metaTitle.content?.includes(POSTFIX)) {
+      metaTitle.content = `${metaTitle.content} – ${POSTFIX}`;
+    }
+  }
+}
+
 function createMetadata(name, value) {
   const meta = document.createElement('meta');
   meta.setAttribute('name', name);
@@ -161,6 +178,7 @@ function addFavIcon(
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  setTitle(doc);
   await loadBlocks(main);
 
   const { hash } = window.location;
