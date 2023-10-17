@@ -1,0 +1,142 @@
+main .ageverification {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  z-index: 1000;
+}
+
+main .ageverification .agegate-logo {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  main .ageverification .background .desktop {
+    display: none;
+  }
+}
+
+main .ageverification .verification div,
+main .ageverification .verification div p {
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  font-family: var(--heading-font-family);
+  line-height: 1.1;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-weight: 100;
+}
+
+main .ageverification .verification > div > div {
+  margin-top: 20px;
+}
+
+main .ageverification .verification > div > div > p {
+  font-size: 30px;
+}
+
+main .ageverification .verification > div:first-of-type > div > p {
+  font-size: 69px;
+}
+
+main .ageverification .verification > div:last-of-type > div {
+  font-size: 22px;
+}
+
+main .ageverification p > strong {
+  font-weight: 700;
+  font-weight: bold;
+}
+
+main .ageverification div.button-container {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+main .ageverification div.button-container > a {
+  font-size: 14px;
+  font-weight: 600;
+  height: 34px;
+  text-shadow: none;
+}
+
+main .ageverification div.button-container > a:hover {
+  text-decoration: none;
+}
+
+main .ageverification div.button-container:first-of-type > a:hover {
+  background-color: #c36;
+}
+
+main .ageverification .verification {
+  position: absolute;
+  top: 33%;
+  left: 8%;
+}
+
+main .ageverification .background img {
+  object-fit: cover;
+  object-position: cover;
+  width: 100%;
+}
+
+@media (min-width: 1000px) {
+  main .ageverification > div {
+    margin-top: var(--nav-height);
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 5px;
+    border-color: var(--header-background-color);
+    margin-bottom: var(--nav-height);
+    height: calc(calc(100vh - var(--nav-height)) - var(--nav-height));
+  }
+
+  main .ageverification .verification > div > div > p {
+    font-size: 24px;
+  }
+  
+  main .ageverification .verification > div:first-of-type > div > p {
+    font-size: 36px;
+  }
+  
+  main .ageverification .verification > div:last-of-type > div {
+    font-size: 20px;
+  }
+  
+  main .ageverification .background {
+    height: 100%;
+    position: relative;
+  }
+
+  main .ageverification .agegate-logo {
+    display: block;
+    position: absolute;
+    left: calc(50vw - 60px);
+    top: calc(var(--nav-height) - 60px);
+    width: 120px;
+    height: 120px;
+  }
+
+  main .ageverification .background .mobile {
+    display: none;
+  }
+
+  main .ageverification .background img {
+    position: absolute;
+    height: 100%;
+    width: auto;
+  }
+
+  main .ageverification .verification {
+    position: absolute;
+    top: calc(23.5% + var(--nav-height));
+    left: 62.5%;
+    max-width: 25%;
+  }
+}
+

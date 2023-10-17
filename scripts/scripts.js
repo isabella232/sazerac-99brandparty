@@ -50,6 +50,56 @@ function buildHeroBlock(main) {
   }
 }
 
+export function getCookie(cname) {
+  const cName = `${cname}=`;
+  const ca = document.cookie.split(';');
+  /* eslint-disable-next-line no-plusplus */
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(cName) === 0) {
+      return c.substring(cName.length, c.length);
+    }
+  }
+  return false;
+}
+
+export function setCookie(name, value, timeInMillis, path) {
+  const date = new Date();
+  date.setTime(date.getTime() + (timeInMillis));
+  const expiry = `expires=${date.toGMTString()}`;
+  const cookie = `${name}=${value}; ${expiry}; path=${path}; SameSite=None; Secure`;
+  document.cookie = cookie;
+}
+
+export function getUrlParameter(sParam) {
+  const sPageURL = window.location.search.substring(1);
+  const sURLVariables = sPageURL.split('&');
+  /* eslint-disable-next-line no-plusplus */
+  for (let i = 0; i < sURLVariables.length; i++) {
+    const sParameterName = sURLVariables[i].split('=');
+
+    if (sParameterName[0] === sParam) {
+      return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+    }
+  }
+  return false;
+}
+
+/**
+ * Builds ageconfirm block and prepends to main in a new section.
+ * @param {Element} main The container element
+ */
+function buildAgeConfirmBlock(main) {
+  if (!(getCookie('sazAgeOK') || getUrlParameter('noAgeCheck'))) {
+    const section = document.createElement('div');
+    section.append(buildBlock('ageverification', { elems: [] }));
+    main.prepend(section);
+  }
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -69,6 +119,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    buildAgeConfirmBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
