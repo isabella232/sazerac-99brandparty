@@ -1,0 +1,7 @@
+.allproducts a, .allproducts p, .allproducts h3, .allproducts a.button {
+    margin: 0;
+}
+
+.section {
+    background: url('/media/apples-top-1024x220-1.png?width=2000&format=webply&optimize=medium') no-repeat;
+}

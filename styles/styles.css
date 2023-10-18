@@ -327,22 +327,6 @@ main .section.highlight {
   margin: 0 31% 0 24%;
 }
 
-body.newproducts main {
-  background: url('/media/new-products.png?width=2000&format=webply&optimize=medium');
-  background-repeat: no-repeat;
-  background-size: contain;
-  text-align: center;
-}
-
-body.newproducts main .default-content-wrapper {
-  margin: 180px auto 0;
-  max-width: 1140px;
-}
-
-body.newproducts main h2 {
-  font-size: var(--heading-font-size-xxl);
-}
-
 body.hardseltzer main {
   background: linear-gradient(
     rgba(0 0 0 / 70%),
@@ -469,16 +453,10 @@ body.partypacks main p {
   font-size: var(--body-font-size-l);
 }
 
-body.newproducts main p {
-  font-size: var(--body-font-size-l);
-}
+
 
 body.partypacks main h2+p {
   text-align: center;
-}
-
-body.newproducts main h2+p {
-  font-size: var(--body-font-size-xl);
 }
 
 .recipes-theme>main p:first-of-type {
@@ -510,9 +488,7 @@ body.newproducts main h2+p {
   background-repeat: no-repeat;
 }
 
-body.newproducts main .default-content-wrapper p {
-  font-size: var(--body-font-size-xl);
-}
+
 
 @media (min-width: 1024px) {
   .recipes-theme .columns, .recipes-theme .columns>div  {
@@ -548,8 +524,4 @@ body.newproducts main .default-content-wrapper p {
   font-weight: var(--font-weight-xs);
   text-transform: uppercase;
   padding-top: 35px;
-}
-
-body.newproducts main h3 {
-  font-size: 30px;
 }

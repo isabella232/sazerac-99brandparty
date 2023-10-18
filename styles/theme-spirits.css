@@ -1,0 +1,46 @@
+/* the yellow title under each picture */
+.table-of-products p:nth-of-type(2) {
+    color: var(--header-background-color);
+    font-family: Oswald, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* 99 brand title */
+.spirits h2:first-of-type {
+    color: #FFC443;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* spirits collection title */
+.spirits h2:nth-of-type(2) {
+    color: #FFF;
+    font-size: 35px;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* text div */
+.spirits > div:nth-of-type(4) {
+    text-align: left;
+}
+
+/* center the button */
+.spirits > div:nth-of-type(4)  p {
+    text-align: center;
+}
+
+main {
+    background: url('/media/spirits-background-left.png?width=2000&format=webply&optimize=medium');
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+.section {
+    background: url('/media/spirits-background-right.png?width=2000&format=webply&optimize=medium');
+    background-position: bottom right;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}

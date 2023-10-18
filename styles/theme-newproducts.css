@@ -1,0 +1,51 @@
+/* top background and spacing for content */
+main {
+    background: url('/media/new-products.png?width=2000&format=webply&optimize=medium');
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+}
+
+main .default-content-wrapper {
+    padding-top: 180px;
+}
+
+/* title and description on top */
+h2 {
+    font-size: var(--heading-font-size-xxl);
+}
+
+.table-of-products h3+p {
+    font-size: var(--body-font-size-l);
+}
+
+.newproducts main h2+p {
+    font-size: var(--body-font-size-xl);
+}
+
+.section:nth-of-type(2) h2, .section:nth-of-type(2) p {
+    text-align: left;
+}
+
+/* list of products */
+.table-of-products h3 {
+    font-size: 30px;
+}
+
+.newproducts main .default-content-wrapper p {
+    font-size: var(--body-font-size-xl);
+}
+
+/* yellow divider */
+.section:nth-of-type(1)::after {
+    content: "";
+    position: absolute;
+    left: calc(100%/4);
+    height: 15px;
+    width: 50%;
+    border-bottom: 3px solid var(--header-background-color);
+}
+
+.section:nth-of-type(2) img {
+    max-width: 550px;
+}

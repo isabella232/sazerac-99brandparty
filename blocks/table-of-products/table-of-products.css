@@ -1,0 +1,50 @@
+/* a table of products shows more than one product on a page:
+- shows an image, a title and a text for each product
+- four products per line, when above breakpoint 1000px
+- two products per line when 999px and below
+- images height to 250px
+ */
+:root {
+    --items-per-row-big: 4;
+    --items-per-row-small: 2;
+}
+
+.table-of-products-container {
+    padding:0 !important;
+}
+
+.table-of-products-wrapper {
+    padding-top: 50px;
+    background-color: rgba(0 0 0 / 80%);
+    justify-content: center;
+    display: flex;
+}
+
+.table-of-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 900px;
+}
+
+.table-of-products  > div {
+    width: calc(100% * (1/var(--items-per-row-small)) );
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 1000px) {
+    .table-of-products  > div {
+        width: calc(100% * (1 / var(--items-per-row-big)));
+    }
+
+    .table-of-products-wrapper {
+        background-color: rgba(0 0 0 / 0%);
+    }
+}
+
+.table-of-products img {
+    max-height: 250px;
+}
