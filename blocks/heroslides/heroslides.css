@@ -1,5 +1,10 @@
-main .heroslides {
+main .section.heroslides-container {
+  padding: 0;
   position: relative;
+}
+
+main .heroslides.desktop {
+  display: none;
 }
 
 main .heroslides > div {
@@ -9,24 +14,12 @@ main .heroslides > div {
 
 main .heroslides > .hidden {
   position: absolute;
-  top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
+  top: 0;
   animation: fade-in 10s; 
   animation-direction: alternate;
   animation-iteration-count: infinite;
-}
-
-main .heroslides > div:first-of-type {
-  animation: fade-out 10s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  line-height: 1.2;
-}
-
-main .heroslides > div > div:first-of-type {
-  width: 80%;
 }
 
 main .heroslides .shop {
@@ -41,16 +34,6 @@ main .heroslides .shop {
   display: inline-block;
 }
 
-main .heroslides .links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-main .heroslides .links > p {
-  display: flex;
-}
-
 main .heroslides .button-container > a {
   font-weight: 600;
   font-family: var(--heading-font-family);
@@ -58,16 +41,57 @@ main .heroslides .button-container > a {
   text-decoration: none;
   padding-left: 10px;
   padding-right: 10px;
-  margin: 0;
+}
+
+main .heroslides .wrapper {
+  position: relative;
+  margin-top: -30%;
+  width: 100%;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+main .heroslides p,
+main .heroslides div {
+  color: white;
+} 
+
+main .heroslides .wrapper > div {
+  max-width: 450px;
+}
+
+main .heroslides .hidden .wrapper {
+  margin-top: -110%;
 }
 
 main .heroslides .wrapper img {
-  max-height: 145px;  
+  max-height: 88px;  
+}
+
+main .heroslides > div:first-of-type {
+  animation: fade-out 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  line-height: 1.2;
 }
 
 main .heroslides .wrapper p {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: var(--heading-font-family);
+}
+
+main .heroslides .links {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+main .heroslides .links > p {
+  display: flex;
 }
 
 main .heroslides .wrapper p:first-of-type,
@@ -75,7 +99,6 @@ main .heroslides > div:first-of-type .wrapper p {
   font-size: 43px;
   font-weight: 500;
   font-family: var(--heading-font-family);
-  margin: 0;
 }
 
 main .heroslides .wrapper p > strong {
@@ -84,18 +107,106 @@ main .heroslides .wrapper p > strong {
   font-family: var(--heading-font-family);
 }
 
+main .heroslides :not(.hidden) .wrapper > div,
+main .heroslides .wrapper > div > p:first-child,
+main .heroslides .wrapper > div > p:nth-child(2),
+main .heroslides .wrapper > div > p:last-child {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+main .heroslides .hidden {
+  pointer-events: none;
+}
+
+main .heroslides > div .wrapper a {
+  pointer-events: auto;
+}
 
 @media (min-width: 1000px) {
-  main .heroslides > div > div:first-of-type {
-    width: 50%;
+  main .heroslides.desktop {
+    display: unset;
+  }
+
+  main .heroslides.mobile {
+    display: none;
+  }
+
+  main .heroslides > div {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  main .heroslides > .hidden {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top:0;
   }
 
   main .heroslides .wrapper {
     width: 340px;
-    margin: auto;
+    margin-top: 6%;
+    margin-left: 15%;
+    margin-right: auto;
     display: flex;
     justify-items: center;
     justify-content: center;
+  }
+
+  main .heroslides .hidden .wrapper {
+    position: unset;
+    margin-top: 4.5%;
+  }
+
+  main .heroslides .wrapper > div {
+    text-align: unset;
+  }
+
+  main .heroslides > div > div:first-of-type {
+    width: 50%;
+  }
+
+
+  main .heroslides .wrapper p {
+    font-size: 14px;
+    margin-top: 0;
+    font-family: var(--heading-font-family);
+  }
+
+  main .heroslides .wrapper p:first-of-type {
+    margin-bottom: 0;
+  }
+
+  main .heroslides .wrapper p:not(:first-child, :nth-child(2)) {
+    max-width: 230px;
+  }
+
+  main .heroslides :not(.hidden) .wrapper > div,
+  main .heroslides .wrapper > div > p:first-child,
+  main .heroslides .wrapper > div > p:nth-child(2),
+  main .heroslides .wrapper > div > p:last-child {
+  text-align: unset;
+}
+
+  main .heroslides > div > div > picture img {
+    width: 60vw;
+    max-width: 750px;
+  }
+
+  main .heroslides .links {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  main .heroslides .wrapper img {
+    max-height: 145px;  
   }
 }
 

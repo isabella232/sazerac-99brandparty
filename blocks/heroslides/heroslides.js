@@ -11,9 +11,12 @@ export default async function decorate(block) {
     const links = Object.assign(document.createElement('div'), {
       className: 'links',
     });
+    const button = element.querySelector('.button-container');
+    button.replaceWith(links);
+    links.append(button);
     links.append(...element.querySelectorAll('.button-container'));
-    element.append(links);
   });
+
   block.querySelectorAll('[href="https://drizly.com/liquor-brands/99-flavored-schnapps/b4323"]').forEach((element) => {
     const link = Object.assign(document.createElement('a'), {
       className: 'shop',
@@ -21,6 +24,6 @@ export default async function decorate(block) {
       title: 'Shop Now',
     });
     link.innerText = 'Shop Now';
-    element.parentElement.replaceWith(link);
+    element.replaceWith(link);
   });
 }

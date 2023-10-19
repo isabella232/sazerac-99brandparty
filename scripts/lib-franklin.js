@@ -624,7 +624,7 @@ export function decorateButtons(element) {
  * Load LCP block and/or wait for LCP in default content.
  */
 export async function waitForLCP(lcpBlocks) {
-  const block = document.querySelector('.block');
+  const block = Array.from(document.querySelectorAll('.block')).find((candidate) => lcpBlocks.includes(candidate.dataset.blockName));
   const hasLCPBlock = (block && lcpBlocks.includes(block.dataset.blockName));
   if (hasLCPBlock) await loadBlock(block);
 

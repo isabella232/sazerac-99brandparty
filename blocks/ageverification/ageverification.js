@@ -1,3 +1,4 @@
+import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { setCookie } from '../../scripts/scripts.js';
 /* age verification overlay */
 
@@ -19,6 +20,15 @@ export default async function decorate(block) {
     const mobileParent = mobile?.parentElement;
     mobileParent?.classList.add('mobile');
     mobile?.remove();
+
+    Array.from(background.querySelectorAll('picture')).forEach((picture) => {
+      picture.replaceWith(createOptimizedPicture(picture.querySelector('img').src, '', false, [{ media: '(min-width: 750px)', width: '2000' }, { width: '450' }]));
+    });
+
+    const img = window.matchMedia('(min-width: 1000px)').matches
+      ? background.querySelector('.desktop img') : background.querySelector('.mobile img');
+
+    img?.setAttribute('loading', 'eager');
 
     block.querySelector('.ageverification > div').prepend(background);
 

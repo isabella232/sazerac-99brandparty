@@ -8,6 +8,7 @@ main .ageverification {
   bottom: 0;
   background-color: black;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 main .ageverification .agegate-logo {
@@ -130,6 +131,7 @@ main .ageverification .background img {
     position: absolute;
     height: 100%;
     width: auto;
+    left: 0;
   }
 
   main .ageverification .verification {
