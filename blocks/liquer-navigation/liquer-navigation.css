@@ -1,5 +1,5 @@
 .devider {
-    width: 110px;
+    width: 50px;
     border-top: 1px solid var(--header-background-color);
     display: flex;
 }
@@ -8,22 +8,59 @@
     flex-grow: 4;
     margin: 0;
     text-transform: uppercase;
+    font-size: 11px;
 }
+
 
 .liquer-navigation p, .liquer-navigation a.button {
     margin: 0;
-    min-width: 160px;
+    max-width: 80px;
+    min-width: 40px;
+    font-size: 11px;
 }
 
-.liquer-navigation-button-container {
-    min-width: 160px;
+@media (min-width: 860px) {
+    .liquer-navigation h3 {
+        font-size: 24px;
+    }
+
+    .devider {
+        width: 90px;
+    }
+
+
+    .liquer-navigation p, .liquer-navigation a.button {
+        max-width: 90px;
+        min-width: 80px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 900px) {
+    .liquer-navigation h3 {
+        font-size: 28px;
+    }
+
+    .devider {
+        width: 110px;
+    }
+
+    .liquer-navigation-button-container {
+        min-width: 160px;
+    }
+
 }
 
 .liquer-navigation {
+    margin-top:50px;
     display: flex;
     margin-bottom: 520px;
     width: 100%;
     align-items: center;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.liquer-navigation div:nth-of-type(3){
+    text-align: center;
 }
