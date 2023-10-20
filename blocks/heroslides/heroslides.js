@@ -17,6 +17,11 @@ export default async function decorate(block) {
     links.append(...element.querySelectorAll('.button-container'));
   });
 
+  const img = window.matchMedia('(min-width: 1000px)').matches
+    ? block.querySelector('.heroslides.desktop img') : block.querySelector('heroslides.mobile img');
+
+  img?.setAttribute('loading', 'eager');
+
   block.querySelectorAll('[href="https://drizly.com/liquor-brands/99-flavored-schnapps/b4323"]').forEach((element) => {
     const link = Object.assign(document.createElement('a'), {
       className: 'shop',
