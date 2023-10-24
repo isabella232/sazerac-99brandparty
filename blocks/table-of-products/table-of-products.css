@@ -51,5 +51,6 @@
 }
 
 .table-of-products img {
-    max-height: 250px;
+    height: 250px;
+    min-width: 85px;
 }

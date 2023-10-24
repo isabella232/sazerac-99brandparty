@@ -18,7 +18,7 @@ function applyBackgroundImage(elementContainingSectionMetadata, elementToApplyBG
 
     let url = backgroundDiv.nextElementSibling.querySelector('img').src;
     url = url.substring(0, url.indexOf('?'));
-    url += '?width=2000&format=webply&optimize=medium';
+    url += '?format=webply&optimize=medium';
 
     elementToApplyBG.classList.add('product-background');
     elementToApplyBG.style.backgroundPosition = style;
