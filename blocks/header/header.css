@@ -402,7 +402,7 @@ header nav .nav-sections > ul > li:last-child {
   }
 
   header nav .nav-sections > ul > li > ul > li {
-    min-width: 16.6667%;
+    min-width: 15%;
     padding: 15px;
     font-size: 16px;
     font-family: var(--heading-font-family);
