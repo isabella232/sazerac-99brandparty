@@ -1,0 +1,1 @@
+curl -H "Origin: main--sazerac-99brandparty--hlxsites.hlx.page" --verbose "https://api.sazerac.com/where_to_buy/api/products/9A199.json?lat=38.3225506&lng=-85.48214949999999&token=-TPkTzrildt0m_nwP2N_7g&within=25"

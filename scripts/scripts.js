@@ -309,6 +309,22 @@ export async function fetchIndex(indexFile, sheet, pageSize = 500) {
   return newIndex;
 }
 
+export function getModal(modalId) {
+  let dialogElement = document.getElementById(modalId);
+  if (!dialogElement) {
+    dialogElement = document.createElement('dialog');
+    dialogElement.id = modalId;
+    document.body.appendChild(dialogElement);
+  }
+  return dialogElement;
+}
+
+export function alert99(txt) {
+  const dialog = getModal('modal99');
+  dialog.innerHTML = `<p>${txt}</p>`;
+  dialog.showModal();
+}
+
 export async function fetchQueryIndex() {
   return fetchIndex('query-index');
 }

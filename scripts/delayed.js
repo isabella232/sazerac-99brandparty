@@ -4,6 +4,11 @@ import { loadScript, sampleRUM } from './lib-franklin.js';
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
+const map = document.querySelector('#locator-map');
+if (map) {
+  loadScript('/blocks/locator/locator-init.js', { defer: true });
+}
+
 // add more delayed functionality here
 
 // GTM

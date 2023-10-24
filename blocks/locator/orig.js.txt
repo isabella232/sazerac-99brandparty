@@ -1,0 +1,341 @@
+var ALERT_ZIP = "Ooops! Invalid ZIP";
+var map;
+var infoWindow;
+var pos;
+var pag_now = 1;
+var resul_lenght;
+var resul_p_pag = 15;
+var countryWithAlcohol = Array("Massachusetts", "South Carolina", "West Virginia", "Arkansas", "Pennsylvania");
+var markers = [];
+var Geolocat = false;
+jQuery(document).ready(function($) {
+
+    $("#modal99")
+        .appendTo("body");
+
+    jQuery(".in-zip input[type=\"text\"]").focus();
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            jQuery('#modal99').modal("hide");
+        }
+    });
+    jQuery(".sub-b99").click(function(event) {
+        event.preventDefault();
+        var dZip = jQuery(".zip-b99").val();
+        var dProd = jQuery(".sel-prod-99").val();
+        var dradius = jQuery(".sel-radius").val();
+        deleteMarkers();
+        infoWindow.close();
+
+        if (Geolocat) {
+            if (!isZIP(dZip)) {
+                getMyLocation(true, dProd, resul_p_pag, dradius);
+            } else {
+                searchForZip(dZip, dProd, dradius);
+            }
+        } else {
+            if (isZIP(dZip)) {
+                searchForZip(dZip, dProd, dradius);
+            } else {
+                alert99(ALERT_ZIP);
+            }
+        }
+    });
+    jQuery(".dir-left").click(function() {
+        var pag_actual = jQuery(".cont-count div[class*=\"cont-rel-page\"][dta-actv=\"true\"]").attr("dta-page");
+        display_page(--pag_now);
+        var ds = jQuery("div.cont-rel-page" + pag_now).children().length;
+        jQuery(".t-cont-count").text((((pag_now * resul_p_pag) - resul_p_pag) + 1) + "-" + ((((pag_now * resul_p_pag) - resul_p_pag)) + ds) + " OF " + resul_lenght + " RESULTS FOUND");
+
+    });
+    jQuery(".dir-right").click(function() {
+        var pag_actual = jQuery(".cont-count div[class*=\"cont-rel-page\"][dta-actv=\"true\"]").attr("dta-page");
+        display_page(++pag_now);
+        var ds = jQuery("div.cont-rel-page" + pag_now).children().length;
+        jQuery(".t-cont-count").text((((pag_now * resul_p_pag) - resul_p_pag) + 1) + "-" + ((((pag_now * resul_p_pag) - resul_p_pag)) + ds) + " OF " + resul_lenght + " RESULTS FOUND");
+    });
+});
+
+function searchForZip(dZip, dProd, dradius) {
+    var localizate_ZIP = "https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" + dZip + "&key=AIzaSyAyfNEYMmECQLIBpa97FVwiQH0Q9ayqK0Y";
+    var jqxhr = jQuery.getJSON(localizate_ZIP, function(data) {
+            console.log(data);
+            if (data.status == "OK") {
+                pos = data.results[0].geometry.location;
+                map.setCenter(pos);
+                infoWindow.setPosition(pos);
+                make_query_product(dProd, resul_p_pag, dradius);
+            } else if (data.status == "ZERO_RESULTS") {
+                alert99("No results found, try another flavor.");
+            }
+        })
+        .done(function() {
+
+        })
+        .fail(function() {
+
+        })
+        .always(function() {
+
+        });
+}
+
+export function initMap() {
+  map = new google.maps.Map(document.getElementById('map99'), {
+    center: {
+      lat: 36.2425741,
+      lng: -113.7464011,
+    },
+    zoom: 8,
+  });
+  infoWindow = new google.maps.InfoWindow({
+    map: map
+  });
+  getMyLocation(false);
+}
+
+function getMyLocation(sub_sinc, dProd, resul_p_pag, dradius) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      Geolocat = true;
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      infoWindow.open(map);
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      map.setCenter(pos);
+      if (sub_sinc) {
+        make_query_product(dProd, resul_p_pag, dradius);
+      }
+      console.log(1);
+     jQuery(".loading-99b").hide();
+    }, function(e) {
+      if (e.code == 1) {
+        Geolocat = false;
+      }
+      handleLocationError(true, infoWindow, map.getCenter());
+      console.log(2);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  jQuery(".loading-99b").hide();
+}
+
+function addMarker(place, i) {
+  var myLatlng = new google.maps.LatLng(place.latitude, place.longitude);
+
+  var pinColor = "FEF102";
+  var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+    new google.maps.Size(21, 34),
+    new google.maps.Point(0,0),
+    new google.maps.Point(10, 34));
+  var marker = new google.maps.Marker({
+    map: map,
+    position: myLatlng,
+        icon: {
+            url: 'https://mt.google.com/vt/icon/name=icons/onion/SHARED-mymaps-pin-container-bg_4x.png,icons/onion/SHARED-mymaps-pin-container_4x.png,icons/onion/1899-blank-shape_pin_4x.png&highlight=ff000000,ffd600,ff000000&scale=2.0',
+            anchor: new google.maps.Point(30, 30),
+            scaledSize: new google.maps.Size(30, 30)
+        }
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent('<div class="info-ubic">\
+        <h5>' + (i + 1) + ' - ' + place.name + '</h5>\
+        <div class="info-ubic-d">\
+          <p>' + place.address + ', <span>' + place.city + '</span></p>\
+          <p class="link-result"><a target="_blank" class="btn" href="' + get_Link(pos.lat, pos.lng, place.latitude, place.longitude) + '">DIRECTIONS</a></p>\
+        </div>\
+      </div>');
+        infoWindow.open(map, marker);
+    });
+    markers.push(marker);
+}
+
+function get_Link(x1, y1, x2, y2) {
+    return "https://www.google.com.co/maps/dir/" + x1 + "," + y1 + "/" + x2 + "," + y2 + "/?hl=en";
+}
+
+function isZIP(text) {
+    return /\d+$/.test(text) && (text.length == 5);
+}
+
+function make_query_product(product_id, nresult, radi) {
+    jQuery(".loading-99b").show();
+
+    var req_url = "/storelocator.php?lat=" + pos.lat + "&lng=" + pos.lng + "&token=75r_SCHLMSclHme0x9K_iA&product=" + product_id + "&within=" + radi;
+    //var req_url = "http://99brandparty.com/storelocator.php?lat=38.3225506&lng=-85.48214949999999&token=75r_SCHLMSclHme0x9K_iA&product="+product_id+"&within=25";
+    var jqxhr = jQuery.getJSON(req_url, function(data) {
+            var isCountryWithAlcohol = isCountryWithoutAlcohol();
+            jQuery(".cont-count div[class*=\"cont-rel-page\"]").remove();
+            jQuery(".dir-cont").hide("slow");
+            jQuery(".t-cont-count").text("");
+            infoWindow.close();
+
+            console.log(data);
+
+            if (isCountryWithAlcohol == undefined) {
+                if(data != null){
+                    for (var i = 0; i < data.data.locations.length; i++) {
+                        addMarker(data.data.locations[i], i);
+                    }
+                    print_Results(data.data.locations, jQuery(".cont-count"), nresult);
+                }else{
+                    alert99("No results found, try another flavor.");
+                }
+            } else {
+                jQuery(".t-cont-count").text(isCountryWithAlcohol);
+                alert99(isCountryWithAlcohol);
+                infoWindow.open(map);
+                infoWindow.setContent(isCountryWithAlcohol);
+
+            }
+
+        })
+        .done(function() {
+            console.log("second success");
+            jQuery(".loading-99b").hide();
+        })
+        .fail(function(e) {
+            console.log("error");
+            console.log(e);
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+}
+
+function print_Results(array, elem, nresult) {
+    ultimo = false;
+    freno = 0;
+    var pagina = 1;
+    if (array.length > 0) {
+        while (!ultimo) {
+            elem.children(".t-cont-count").after("<div class=\"col-sm-12 cont-rel-page" + pagina + "\" dta-page=\"" + pagina + "\"></div>");
+            for (var i = freno;
+                (i < freno + nresult) && !ultimo; i++) {
+                jQuery(".cont-rel-page" + pagina).append('<div class="col-sm-12 cont-result">\
+          <div class="col-sm-9 cont-par">\
+            <div class="col-sm-1 icon-result">\
+              <span class="map-icon  map-icon-map-pin" aria-hidden="true"><p class=\"icon-num\"">' + (i + 1) + '</p></span>\
+            </div>\
+            <div class="col-sm-11 info-result">\
+              <p class=\"info-rtitle\">' + array[i].name + '</p>\
+              <p class=\"info-rubication\">' + array[i].address + ', ' + array[i].city + ', ' + array[i].state + '</p>\
+            </div>\
+          </div>\
+          <div class="col-sm-3 link-result">\
+            <a class="btn" target="_blank" href="' + get_Link(pos.lat, pos.lng, array[i].latitude, array[i].longitude) + '">DIRECTIONS</a>\
+          </div>\
+        </div>');
+                if (i >= (array.length - 1)) {
+                    ultimo = true;
+                    jQuery(".dir-cont").show("slow");
+                    display_page(1, pagina);
+                    resul_lenght = i + 1;
+                }
+            }
+            freno += nresult;
+            if (!ultimo) {
+                pagina++;
+            }
+        }
+        var ds = jQuery("div.cont-rel-page" + pag_now).children().length;
+        jQuery(".t-cont-count").text((((pag_now * nresult) - nresult) + 1) + "-" + ((((pag_now * nresult) - nresult)) + ds) + " OF " + resul_lenght + " RESULTS FOUND");
+
+    } else {
+        alert99("No results found, try another flavor.");
+    }
+
+}
+
+function display_page(posi) {
+    if (posi >= resul_lenght) {
+
+        jQuery("dir-left").hide();
+    } else if (posi <= 1) {
+        jQuery("dir-right").hide();
+    }
+    if (posi <= 0) {
+        posi = 1;
+    } else if (posi > Math.ceil(resul_lenght / resul_p_pag)) {
+        posi = Math.ceil(resul_lenght / resul_p_pag);
+    }
+    jQuery(".cont-count div[class*=\"cont-rel-page\"]").hide();
+    jQuery(".cont-count div.cont-rel-page" + posi).show();
+    jQuery(".cont-count div.cont-rel-page" + posi).attr({
+        "dta-actv": "true"
+    });;
+    pag_now = posi;
+}
+
+function getMaxZoom(latlgt) {
+    var maxZoomService = new google.maps.MaxZoomService();
+    maxZoomService.getMaxZoomAtLatLng(latlgt, function(response) {
+        if (response.status !== google.maps.MaxZoomStatus.OK) {
+            return -1;
+        } else {
+            return response.zoom;
+        }
+    });
+}
+
+function isCountryWithoutAlcohol() {
+    var req_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + pos.lat + "," + pos.lng + "&key=AIzaSyAyfNEYMmECQLIBpa97FVwiQH0Q9ayqK0Y&location_type=APPROXIMATE&result_type=administrative_area_level_1";
+    var country;
+    jQuery.ajax({
+        url: req_url,
+        dataType: 'json',
+        async: false,
+        timeout: 60000,
+        success: function(data) {
+            console.log(data);
+            if (data.status == "ZERO_RESULTS") {
+                console.log("ZERO_RESULTS");
+            } else if (data.status == "OK") {
+                for (var i = countryWithAlcohol.length - 1; i >= 0; i--) {
+                    if (countryWithAlcohol[i] == data.results[0].address_components[0].long_name) {
+                        country = "Information not available for " + data.results[0].address_components[0].long_name;
+                        break;
+                    }
+                }
+            }
+        },
+        error: function(e, t) {
+            alert(t);
+        }
+    });
+    return country;
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+    setMapOnAll(null);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+    clearMarkers();
+    markers = [];
+}
+
+function alert99(txt) {
+    jQuery("#modal99 .modal-body").children('p').text(txt);
+    jQuery("#modal99").modal('show');
+
+}

@@ -1,5 +1,5 @@
 main .form input,
-main .form textarea{
+main .form textarea, main .form select{
     width: 100%;
     max-width: 50rem;
     box-sizing: border-box;

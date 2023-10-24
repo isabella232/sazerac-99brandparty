@@ -25,6 +25,39 @@ async function submitForm(form) {
   return payload;
 }
 
+function createSelect(fd) {
+  const select = document.createElement('select');
+  select.id = fd.Field;
+  if (fd.Placeholder) {
+    const ph = document.createElement('option');
+    ph.textContent = fd.Placeholder;
+    ph.setAttribute('selected', '');
+    ph.setAttribute('disabled', '');
+    select.append(ph);
+  }
+  if (fd.State && fd.State === 'disabled') {
+    select.setAttribute('disabled', '');
+  }
+  const values = fd.Values ? fd.Values.split(',') : [];
+
+  fd.Options.split(',').forEach((o, i) => {
+    const option = document.createElement('option');
+    option.textContent = o.trim();
+    option.value = values[i]?.trim() ?? o.trim();
+    select.append(option);
+  });
+  if (fd.Mandatory) {
+    select.setAttribute('required', 'required');
+  }
+  if (fd.Enable) {
+    select.addEventListener('change', () => {
+      const enable = document.getElementById(fd.Enable);
+      enable.removeAttribute('disabled');
+    });
+  }
+  return select;
+}
+
 function createButton(fd) {
   const button = document.createElement('button');
   button.textContent = fd.Label;
@@ -36,9 +69,16 @@ function createButton(fd) {
       if (form.checkValidity()) {
         event.preventDefault();
         button.setAttribute('disabled', '');
-        await submitForm(form);
-        const redirectTo = fd.Extra;
-        window.location.href = redirectTo;
+        const isFct = fd?.Extra.includes('()');
+        if (isFct) {
+          const fct = fd.Extra.replace('()', '');
+          await window[fct](form);
+          button.removeAttribute('disabled');
+        } else {
+          await submitForm(form);
+          const redirectTo = fd.Extra;
+          window.location.href = redirectTo;
+        }
       }
     });
   }
@@ -64,6 +104,16 @@ function createTextArea(fd) {
     input.setAttribute('required', 'required');
   }
   return input;
+}
+
+function createLabel(fd) {
+  const label = document.createElement('label');
+  label.setAttribute('for', fd.Field);
+  label.textContent = fd.Label;
+  if (fd.Mandatory === 'x') {
+    label.classList.add('required');
+  }
+  return label;
 }
 
 function applyRules(form, rules) {
@@ -107,13 +157,19 @@ async function createForm(formURL) {
     fieldWrapper.className = fieldId;
     fieldWrapper.classList.add('field-wrapper');
     switch (fd.Type) {
+      case 'select':
+        if (fd.Label) fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createSelect(fd));
+        break;
       case 'text-area':
+        if (fd.Label) fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createTextArea(fd));
         break;
       case 'submit':
         fieldWrapper.append(createButton(fd));
         break;
       default:
+        if (fd.Label) fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createInput(fd));
     }
 
