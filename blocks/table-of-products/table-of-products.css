@@ -27,6 +27,11 @@
     max-width: 900px;
 }
 
+.table-of-products::after {
+    content: "";
+    flex: auto;
+}
+
 .table-of-products  > div {
     width: calc(100% * (1/var(--items-per-row-small)) );
     display: flex;
