@@ -170,7 +170,7 @@ async function makeQueryProduct(product, radius) {
   }
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { mode: 'no-cors' });
     if (response.ok) {
       const data = await response.json();
       infoWindow.close();
