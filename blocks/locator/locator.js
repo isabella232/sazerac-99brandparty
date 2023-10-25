@@ -168,7 +168,8 @@ async function makeQueryProduct(product, radius) {
     // for local development, use testdata
     url = '/blocks/locator/testdata.json';
   }
-
+  const spinner = document.querySelector('.loading-modal');
+  spinner.style.display = '';
   try {
     const response = await fetch(url);
     if (response.ok) {
@@ -193,6 +194,7 @@ async function makeQueryProduct(product, radius) {
   } catch (err) {
     alert99(err);
   }
+  spinner.style.display = 'none';
 }
 
 async function searchForZip(zip, product, radius) {
@@ -308,5 +310,11 @@ export default async function decorate(block) {
   rdiv.id = 'locator-results';
   rdiv.className = 'results';
   d.appendChild(rdiv);
+
+  const spinner = document.createElement('div');
+  spinner.classList.add('loading-modal');
+  spinner.style.display = 'none';
+  d.appendChild(spinner);
+
   block.append(d);
 }
