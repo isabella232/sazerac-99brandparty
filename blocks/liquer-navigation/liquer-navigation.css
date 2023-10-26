@@ -1,7 +1,9 @@
-.devider {
+.divider {
     width: 50px;
     border-top: 1px solid var(--header-background-color);
     display: flex;
+    flex-grow: 2;
+    margin: 0 20px;
 }
 
 .liquer-navigation h3 {
@@ -24,8 +26,9 @@
         font-size: 24px;
     }
 
-    .devider {
+    .divider {
         width: 90px;
+        margin: 0 40px;
     }
 
 
@@ -41,14 +44,9 @@
         font-size: 28px;
     }
 
-    .devider {
+    .divider {
         width: 110px;
     }
-
-    .liquer-navigation-button-container {
-        min-width: 160px;
-    }
-
 }
 
 .liquer-navigation {
@@ -64,3 +62,4 @@
 .liquer-navigation div:nth-of-type(3){
     text-align: center;
 }
+

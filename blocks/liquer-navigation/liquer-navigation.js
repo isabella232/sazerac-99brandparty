@@ -1,18 +1,19 @@
 import { getSortedProductsIndex } from '../../scripts/scripts.js';
 
-function createDevider(block, prepend) {
-  const deviderDiv = document.createElement('div');
-  deviderDiv.innerHTML = '<span class="devider"> </span>';
+function createDivider(block, prepend) {
+  const dividerDiv = document.createElement('div');
+  dividerDiv.classList.add('divider');
+  dividerDiv.innerHTML = '<span> </span>';
   if (prepend) {
-    block.prepend(deviderDiv);
+    block.prepend(dividerDiv);
   } else {
-    block.append(deviderDiv);
+    block.append(dividerDiv);
   }
 }
 
 export default async function decorate(block) {
-  createDevider(block, true);
-  createDevider(block, false);
+  createDivider(block, true);
+  createDivider(block, false);
 
   const indexedProducts = await getSortedProductsIndex();
   const indexCurrentPage = indexedProducts.findIndex((e) => e.path === document.location.pathname);
