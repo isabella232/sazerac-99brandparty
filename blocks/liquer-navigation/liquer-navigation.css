@@ -1,9 +1,8 @@
 .divider {
-    width: 50px;
+    min-width: 30px;
+    max-width: 100px !important;
     border-top: 1px solid var(--header-background-color);
     display: flex;
-    flex-grow: 2;
-    margin: 0 20px;
 }
 
 .liquer-navigation h3 {
@@ -21,14 +20,33 @@
     font-size: 11px;
 }
 
+@media (min-width: 450px) {
+    .liquer-navigation h3 {
+        font-size: 14px;
+    }
+
+    .divider {
+        width: 50px;
+    }
+}
+
+@media (min-width: 767px) {
+    .liquer-navigation h3 {
+        font-size: 16px;
+    }
+
+    .divider {
+        width: 80px;
+    }
+}
+
 @media (min-width: 860px) {
     .liquer-navigation h3 {
         font-size: 24px;
     }
 
     .divider {
-        width: 90px;
-        margin: 0 40px;
+        width: 120px;
     }
 
 
@@ -45,7 +63,7 @@
     }
 
     .divider {
-        width: 110px;
+        width: 150px;
     }
 }
 
@@ -54,6 +72,7 @@
     display: flex;
     margin-bottom: 520px;
     width: 100%;
+    max-width: 1040px !important;
     align-items: center;
     flex-wrap: nowrap;
     justify-content: space-around;
