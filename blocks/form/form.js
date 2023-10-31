@@ -193,6 +193,7 @@ async function createForm(formURL) {
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
   if (form) {
+    form.parentElement.classList.add('button-container');
     form.replaceWith(await createForm(form.href));
     if (document.location.href.includes('status=sent')) {
       const div = document.createElement('div');
