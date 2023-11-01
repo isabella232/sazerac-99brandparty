@@ -607,3 +607,7 @@ body.partypacks main h2+p {
   font-size: 10px;
   width: 72px;
 }
+
+.alert-container {
+  text-align: right;
+}

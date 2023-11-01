@@ -321,8 +321,9 @@ export function getModal(modalId) {
 
 export function alert99(txt) {
   const dialog = getModal('modal99');
-  dialog.innerHTML = `<p>${txt}</p>`;
+  dialog.innerHTML = `<hr/><p>${txt}</p><hr/><div class='alert-container form'><button class='button alert'>Close</button></div>`;
   dialog.showModal();
+  dialog.addEventListener('click', () => dialog.close());
 }
 
 export async function fetchQueryIndex() {
