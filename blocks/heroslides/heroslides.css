@@ -69,6 +69,10 @@ main .heroslides .wrapper img {
   max-height: 88px;  
 }
 
+main .heroslides .hidden .wrapper img:first-of-type {
+  max-height: 41px;
+}
+
 main .heroslides > div:first-of-type {
   animation: fade-out 10s;
   animation-iteration-count: infinite;

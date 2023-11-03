@@ -47,11 +47,13 @@ export default async function decorate(block) {
     buttonyes.onclick = (event) => {
       setCookie('sazAgeOK', 'yes', 63113852000, '/');
       document.querySelector('.ageverification-container').remove();
+      document.querySelector('main').classList.remove('agegate');
       event.preventDefault();
     };
 
     const buttonno = buttons[1];
     buttonno.parentElement.classList.add('button-container');
     buttonno.className = 'button primary';
+    document.querySelector('main').classList.add('agegate');
   }
 }
