@@ -4,6 +4,8 @@
     margin-right: auto;
     margin-left: auto;
     max-width: 900px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* name, phone */
@@ -142,7 +144,7 @@
     }
 
     .sayhello .section {
-        background-color: rgba(0 0 0 / 80%)
+        background-color: rgba(0 0 0 / 80%);
     }
 
 }
