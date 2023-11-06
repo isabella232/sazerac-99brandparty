@@ -54,6 +54,21 @@
   a.button:any-link {
     font-size: 12px;
   }
+
+  .locator-container > div {
+    text-align: center;
+  }
+
+  .locator-container form {
+    flex-flow: column !important;
+    padding-bottom: 20px;
+  }
+
+  main .form input,
+  main .form textarea, main .form select {
+    max-width: 100% !important;
+    width: calc(100vw - 40px);
+  }
 }
 
 @media (max-width: 480px) {
