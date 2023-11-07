@@ -102,7 +102,7 @@ main .form textarea, main .form select {
 }
 
 .required, .disclaimer {
-  color: #737373;
+  color: #BFBFBF;
   font-family: OpenSansRegular, sans-serif;
   font-size: 10.6667px;
   font-weight: var(--font-weight-lplus);

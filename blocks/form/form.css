@@ -9,7 +9,7 @@ main .form textarea, main .form select{
     border: 1px solid #fef102;
     outline: none;
     background-color: white;
-    color: rgb(122 122 122);
+    color: rgb(102 102 102);
 }
 
 main .form textarea {
