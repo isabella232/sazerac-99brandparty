@@ -31,18 +31,23 @@ function isZIP(text) {
 }
 
 async function isCountryWithoutAlcohol() {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&key=AIzaSyAyfNEYMmECQLIBpa97FVwiQH0Q9ayqK0Y&location_type=APPROXIMATE&result_type=administrative_area_level_1`;
-  const response = await fetch(url);
+  // eslint-disable-next-line no-undef
+  const geocoder = new google.maps.Geocoder();
   let country;
-  if (response.ok) {
-    const data = await response.json();
-    if (data.status === 'OK') {
-      const search = data.results[0].address_components[0].long_name;
-      if (countryWithAlcohol.find((c) => c === search)) {
-        country = `Information not available for ${search}`;
-      }
+  // eslint-disable-next-line no-undef
+  const searchPosition = new google.maps.LatLng(pos.lat, pos.lng);
+  await geocoder.geocode({ location: searchPosition }, async (results, status) => {
+    if (status === 'OK') {
+      results.forEach((res) => {
+        if (res.types.includes('administrative_area_level_1')) {
+          const search = res.address_components[0].long_name;
+          if (countryWithAlcohol.find((c) => c === search)) {
+            country = `Information not available for ${search}`;
+          }
+        }
+      });
     }
-  }
+  });
   return country;
 }
 
@@ -198,21 +203,21 @@ async function makeQueryProduct(product, radius) {
 }
 
 async function searchForZip(zip, product, radius) {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:${zip}&key=AIzaSyAyfNEYMmECQLIBpa97FVwiQH0Q9ayqK0Y`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    alert99('No results found, try another flavor.');
-  } else {
-    const data = await response.json();
-    if (data.results.length === 0) {
-      alert99('No results found, try another flavor.');
-    } else {
-      pos = data.results[0].geometry.location;
-      map.setCenter(pos);
-      infoWindow.setPosition(pos);
+  // eslint-disable-next-line no-undef
+  const geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ address: zip }, async (results, status) => {
+    if (status === 'OK') {
+      map.setCenter(results[0].geometry.location);
+      // eslint-disable-next-line no-undef,no-new
+      new google.maps.Marker({
+        map,
+        position: results[0].geometry.location,
+      });
       await makeQueryProduct(product, radius);
+    } else {
+      alert99('No results found, try another flavor.');
     }
-  }
+  });
 }
 
 function handleLocationError() {
