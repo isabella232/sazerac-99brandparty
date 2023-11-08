@@ -207,11 +207,15 @@ async function searchForZip(zip, product, radius) {
   const geocoder = new google.maps.Geocoder();
   geocoder.geocode({ address: zip }, async (results, status) => {
     if (status === 'OK') {
-      map.setCenter(results[0].geometry.location);
+      pos = {
+        lat: results[0].geometry.location.lat(),
+        lng: results[0].geometry.location.lng(),
+      };
+      map.setCenter(pos);
       // eslint-disable-next-line no-undef,no-new
       new google.maps.Marker({
         map,
-        position: results[0].geometry.location,
+        position: pos,
       });
       await makeQueryProduct(product, radius);
     } else {
