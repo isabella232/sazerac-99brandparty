@@ -101,7 +101,7 @@ main .form textarea, main .form select {
   font-weight: var(--font-weight-lplus);
 }
 
-.required, .disclaimer {
+.required, .disclaimer, label:first-of-type {
   color: #BFBFBF;
   font-family: OpenSansRegular, sans-serif;
   font-size: 10.6667px;
