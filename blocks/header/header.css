@@ -299,6 +299,7 @@ header nav .nav-sections > ul > li:last-child {
     display: block;
     visibility: visible;
     white-space: nowrap;
+    padding-left: 10px;
   }
 
   header nav[aria-expanded="true"] .nav-sections {

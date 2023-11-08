@@ -3,8 +3,131 @@
   flex-flow: column wrap;
 }
 
+dialog picture > img {
+  width: auto;
+  height: auto;
+  max-width: 80vw;
+  max-height: 80vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .columns img {
   width: 100%;
+}
+
+dialog {
+  transition-duration: 350ms;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgb(0 0 0 / 10%);
+}
+
+
+dialog .embed-navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 24px;
+  display: flex;
+  background: rgb(0 0 0 / 0%);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 15px;
+}
+
+
+dialog .embed-navigation,
+dialog::backdrop {
+  opacity: .80;
+  transition-timing-function: cubic-bezier(.22, .61, .36, 1);
+  background-color: black;
+}
+
+dialog .embed-navigation button {
+  height: 24px;
+  width: auto;
+  background-color: black;
+  fill: white;
+  border: 0;
+  cursor: pointer;
+  padding: 1px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+dialog.scaled img {
+  transition-duration: 300ms;
+  transform: translate3d(0, 0, 0) scale(3.0);
+}
+
+dialog h2 {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--body-font-family);
+}
+
+dialog .sharing {
+  position: fixed;
+  min-width: 200px;
+  right: 2.8em;
+  top: 4em;
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 15px rgba(0 0 0 / 30%);
+  flex-flow: wrap;
+  flex-direction: column;
+}
+
+dialog .sharing a {
+  flex: 1;
+  color: #2c2c2c;
+  font-weight: var(--body-font-family);
+  font-size: 12px;
+  line-height: 2.5;
+}
+
+dialog .sharing a > img {
+  transform: translate(-5px, 4px);
+}
+
+dialog .sharing::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: .9em;
+  border: .7em solid transparent;
+  border-bottom-color: #fff;
+  transform: translateY(-100%) scaleX(.7);
+}
+
+dialog .icon-magnify {
+  transform: rotate(90deg);
+}
+
+dialog .icon-shrink,
+dialog .icon-share {
+  transform: scaleX(-1) rotate(180deg) translate(0, 10%);
 }
 
 .columns > div > div {
