@@ -258,10 +258,6 @@ function getMyLocation(subSinc, product, radius) {
 function formSubmitted(form) {
   const zip = form.querySelector('#zip').value;
   deleteResult();
-  if (!isZIP(zip)) {
-    alert99('Please enter a valid ZIP code.');
-    return;
-  }
   const product = form.querySelector('#product').value;
   const radius = form.querySelector('#distance').value;
   if (geolocat) {
