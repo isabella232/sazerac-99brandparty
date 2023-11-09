@@ -224,10 +224,6 @@ async function searchForZip(zip, product, radius) {
   });
 }
 
-function handleLocationError() {
-  document.getElementById('locator-map').innerHTML = 'Error: Your browser doesn\'t support geolocation.';
-}
-
 function getMyLocation(subSinc, product, radius) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -247,11 +243,7 @@ function getMyLocation(subSinc, product, radius) {
       if (e.code === 1) {
         geolocat = false;
       }
-      handleLocationError();
     });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError();
   }
 }
 
