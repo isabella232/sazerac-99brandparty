@@ -3,7 +3,7 @@ name: AIO Mailgun deploy 99brand to production
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   deploy:
     name: Deploy to Prod
