@@ -10,19 +10,17 @@ function constructPayload(form) {
   return payload;
 }
 
-async function submitForm(form) {
+async function submitForm(form, token) {
   const payload = constructPayload(form);
   payload.timestamp = new Date().toJSON();
-  const resp = await fetch(form.dataset.action, {
-    method: 'POST',
+  const url = `https://266117-714copperbee.adobeioruntime.net/api/v1/web/mailgun/sendmail?name=${payload.name}&phone=${payload.phone}&email=${payload.email}&note=${payload.note}&token=${token}`;
+
+  const resp = await fetch(url, {
+    method: 'GET',
     cache: 'no-cache',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ data: payload }),
   });
   await resp.text();
-  return payload;
+  return resp.status;
 }
 
 function createSelect(fd) {
@@ -75,9 +73,20 @@ function createButton(fd) {
           await window[fct](form);
           button.removeAttribute('disabled');
         } else {
-          await submitForm(form);
-          const redirectTo = fd.Extra;
-          window.location.href = redirectTo;
+          // eslint-disable-next-line no-undef
+          grecaptcha.ready(() => {
+            // eslint-disable-next-line no-undef
+            grecaptcha.execute('6LcObf0oAAAAADzBdyJ7hBbcGKdh-bkk4uWcq6-0', { action: 'submit' }).then(async (token) => {
+              submitForm(form, token).then((status) => {
+                const redirectTo = fd.Extra;
+                if (status === 200) {
+                  window.location.href = `${redirectTo}?status=sent`;
+                } else {
+                  window.location.href = `${redirectTo}?status=failed`;
+                }
+              });
+            });
+          });
         }
       }
     });
@@ -199,6 +208,11 @@ export default async function decorate(block) {
       const div = document.createElement('div');
       div.innerHTML = 'Thank you for your message. It has been sent.';
       div.classList.add('success');
+      document.querySelector('.section').appendChild(div);
+    } else if (document.location.href.includes('status=failed')) {
+      const div = document.createElement('div');
+      div.innerHTML = 'Your message could not be sent. Please contact by phone or email.';
+      div.classList.add('failed');
       document.querySelector('.section').appendChild(div);
     }
   }

@@ -18,4 +18,4 @@ loadScript('/scripts/gtm-init.js', { defer: true });
 loadScript('/scripts/ga-init.js', { defer: true });
 
 // reCapture
-loadScript('https://www.google.com/recaptcha/api.js?render=6LfrAQgeAAAAAP0zLUqJQydsBxkJp-XZK8KsKX_d&#038;ver=3.0', { defer: true });
+loadScript('https://www.google.com/recaptcha/api.js?render=6LcObf0oAAAAADzBdyJ7hBbcGKdh-bkk4uWcq6-0&#038;ver=3.0', { defer: true });

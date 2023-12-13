@@ -106,13 +106,20 @@
     border: 2px solid #46b450;
 }
 
+.sayhello .failed {
+    margin: 2em 0.5em 1em;
+    padding: 0.2em 1em;
+    width: 100vw;
+    border: 2px solid red;
+}
+
 @media (min-width: 768px) {
     .sayhello .section > div:not(:first-child) {
         flex: 1;
     }
 
     /* success message when form was sent */
-    .sayhello .success {
+    .sayhello .success, .sayhello .failed {
         min-width: 100%;
     }
 }

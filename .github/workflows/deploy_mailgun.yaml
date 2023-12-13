@@ -1,0 +1,59 @@
+name: AIO Mailgun deploy 99brand to production
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    name: Deploy to Prod
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        node-version: ['20']
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: 'tools/contact-form/mailgun'
+          sparse-checkout-cone-mode: false
+      - name: Move files to root
+        run: |
+          ls -lah
+          mv tools/contact-form/mailgun/* .
+          rm -rf tools
+          ls -lah
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+        run: npm i
+      - name: Setup CLI
+        uses: adobe/aio-cli-setup-action@1.2.0
+        with:
+          os: ${{ matrix.os }}
+      - name: Build
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          AIO_RUNTIME_NAMESPACE: ${{ secrets.AIO_RUNTIME_NAMESPACE_PROD }}
+        uses: adobe/aio-apps-action@2.0.2
+        with:
+          os: ${{ matrix.os }}
+          command: build
+      - name: Deploy
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          AIO_RUNTIME_NAMESPACE: ${{ secrets.AIO_RUNTIME_NAMESPACE_PROD }}
+          AIO_RUNTIME_AUTH: ${{ secrets.AIO_RUNTIME_AUTH_PROD }}
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          GCAPTCHA_SECRET: ${{ secrets.GCAPTCHA_SECRET }}
+        uses: adobe/aio-apps-action@2.0.2
+        with:
+          os: ${{ matrix.os }}
+          command: deploy
+      - name: Initiate the action after deploy
+        run: |
+          curl -X POST https://${{ secrets.AIO_RUNTIME_NAMESPACE_PROD }}.adobeioruntime.net/api/v1/web/mailgun/sendmail?initiate=true
